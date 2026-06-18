@@ -1,0 +1,5 @@
+Categoria;Modelo;AUC-ROC (Média ± Std);F1-Score;Sensibilidade;Especificidade;vs Benchmark
+ML Clássico;SVM;0.6964 ± 0.1289;0.6687;0.7167;0.5778;ABAIXO
+ML Clássico;ENSEMBLE;0.6880 ± 0.0848;0.6040;0.6167;0.6287;ABAIXO
+Deep Learning;Transformer;0.4524 ± 0.0616;0.4000;0.6000;0.4000;ABAIXO
+Deep Learning;Hybrid;0.6976 ± 0.1559;0.6206;0.5750;0.7250;ABAIXO

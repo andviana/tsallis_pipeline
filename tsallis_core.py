@@ -183,7 +183,7 @@ def profile_features(
     'decay_ratio'   : S_q(q_max)/S_q(q_min) — queda relativa total do perfil.
                       Distribuições com caudas pesadas (DP) decaem MAIS
                       rapidamente -> decay_ratio menor.
-    'area'          : integral do perfil (trapz) — complexidade global integrada
+    'area'          : integral do perfil (trapezoid) — complexidade global integrada
     'slope_q1'      : dS_q/dq estimado por diferença central em q=1.0
     'curvature_int' : integral da segunda derivada (|d2S/dq2|) — mede não-linearidade
 
@@ -212,7 +212,7 @@ def profile_features(
     feats['decay_ratio'] = float(s_max_q / (s_min_q + 1e-10))
 
     # Área total
-    feats['area'] = float(np.trapz(profile, q_values))
+    feats['area'] = float(np.trapezoid(profile, q_values))
 
     # Inclinação em q=1 (diferença central)
     idx1 = np.argmin(np.abs(q_values - 1.0))
@@ -224,7 +224,7 @@ def profile_features(
 
     # Curvatura (integral de |d2S/dq2|)
     d2 = np.gradient(np.gradient(profile, q_values), q_values)
-    feats['curvature_int'] = float(np.trapz(np.abs(d2), q_values))
+    feats['curvature_int'] = float(np.trapezoid(np.abs(d2), q_values))
 
     return feats
 
@@ -259,7 +259,7 @@ def profile_area(profile: np.ndarray, q_values: np.ndarray = None) -> float:
     """Área sob o perfil (integral trapezoidal). Alias de profile_features['area']."""
     if q_values is None:
         q_values = Q_DEFAULT
-    return float(np.trapz(profile, q_values))
+    return float(np.trapezoid(profile, q_values))
 
 
 # ─────────────────────────────────────────────────────────────────

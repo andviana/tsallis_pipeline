@@ -277,9 +277,9 @@ class TFSPreprocessor:
 
 def _build_svm(C: float = 1.0, gamma: str = 'scale') -> SKPipeline:
     """SVM-RBF calibrado com Platt scaling (probabilidades confiáveis)."""
-    svm_base = SVC(C=C, kernel='rbf', gamma=gamma, probability=False,
+    svm_base = SVC(C=C, kernel='rbf', gamma=gamma, 
                    class_weight='balanced', random_state=42)
-    calibrated = CalibratedClassifierCV(svm_base, cv=5, method='sigmoid')
+    calibrated = CalibratedClassifierCV(svm_base, cv=5, method='sigmoid', ensemble=False)
     return calibrated
 
 
@@ -952,7 +952,7 @@ if __name__ == "__main__":
     print("\n[6] TFSPipeline end-to-end (CV 5-fold)")
     pipe = TFSPipeline(
         classifier='ensemble',
-        k_features=25,
+        k_features=8,
         q_vae=False,
         selection_method='anova'
     )

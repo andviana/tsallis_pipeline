@@ -6,3 +6,5 @@ soundfile
 pandas
 scikit-learn
 numba
+matplotlib
+seaborn
